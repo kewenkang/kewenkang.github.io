@@ -155,6 +155,258 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-python-学习笔记（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/06/python-学习笔记（一）/">python 学习笔记（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/06/python-学习笔记（一）/" class="archive-article-date">
+  	<time datetime="2017-06-06T13:57:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、-python的数据结构"><a href="#一、-python的数据结构" class="headerlink" title="一、 python的数据结构"></a>一、 python的数据结构</h3><pre><code>1. hashmap  -&gt;  dict
+    dict = {&quot;red&quot;: 1, &quot;green&quot;: 2, &quot;blue&quot;: 3}
+    dict.get(&quot;red&quot;) 返回1，若没有则返回None
+    dict.pop(&quot;red&quot;) 删除&quot;red&quot;
+    for value in dict.values() 获取所有的value, key不用获取直接用key in dict
+    for k, v in dict.items() 获取所有的键值对
+2. array  -&gt;  list
+    注：字符串也是数组
+    list = [&quot;ww&quot;, &quot;qq&quot;, &quot;ee&quot;, &quot;rr&quot;] 
+    list.append(&quot;dd&quot;)
+    list.insert(index, value)
+    list.pop(index) 默认删除尾部元素
+3. set  -&gt;  set
+    c_set = set()
+    c_set.add(&quot;www&quot;)
+    c_set.add(&quot;eee&quot;)
+    c_set.remove(&quot;www&quot;)
+</code></pre><hr>
+<h3 id="二、-分支结构-注注注：python所有的分支结构后面都要加-冒号"><a href="#二、-分支结构-注注注：python所有的分支结构后面都要加-冒号" class="headerlink" title="二、 分支结构 注注注：python所有的分支结构后面都要加 冒号"></a>二、 分支结构 注注注：python所有的分支结构后面都要加 <strong>冒号</strong></h3><pre><code>1. if...else
+    a=2
+    if a&gt;0:
+        print 1
+    elif a==0:
+        print 0
+    else :
+        print -1
+
+2. for循环
+    for value in list:
+        print value
+    sum = 0    
+    for value in range(1, 11):
+        sum += value
+    print sum
+
+3. while循环
+    i = 1
+    while i &lt; 10:
+        i += 1
+        if i % 2 =0:
+            print i
+
+    while i &gt; 1:
+        i -= 1
+        if i % 5 == 0:
+            break  # continue
+        print i
+</code></pre><h4 id="字符串-str-’AbcdefG’"><a href="#字符串-str-’AbcdefG’" class="headerlink" title="字符串 str=’AbcdefG’"></a>字符串 str=’AbcdefG’</h4><ol>
+<li>len(str)  # 7  输出字符串，字典，set的长度</li>
+<li>str[2: 5]   # cde  起始位置和结束位置</li>
+<li>str.lower()  # abcdefg  转为小写</li>
+</ol>
+<hr>
+<h3 id="三、-python高级特性"><a href="#三、-python高级特性" class="headerlink" title="三、 python高级特性"></a>三、 python高级特性</h3><ol>
+<li>切片</li>
+<li>迭代<br> isinstance([1,2], Iterable) 判断是否可迭代<br> for index, val in enumerate([1,2,3]) enumerate()将list变成索引-元素对</li>
+<li>列表生成式<br> [x*y for x in [1,2,3] for y in [-1,-2,-3] if x%2 == 1]</li>
+<li><p>生成器(generator.py)<br> 将列表生成式的[]改为()<br> g = (x*x for x in range(1, 10))<br> next(g) 获取生成器的下一个元素<br> for n in g </p>
+<p> 注：</p>
+<ul>
+<li>在函数中使用yield，函数就变成了生成器；</li>
+<li>函数是顺序执行，遇到return语句或者最后一行函数语句就返回。而变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。</li>
+</ul>
+</li>
+<li><p>迭代器<br> 生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。</p>
+<p> 把list、dict、str等Iterable变成Iterator可以使用iter()函数<br> 把Iterator变成list可以使用list(iterator)</p>
+</li>
+</ol>
+<hr>
+<h3 id="四、-python函数式编程"><a href="#四、-python函数式编程" class="headerlink" title="四、 python函数式编程"></a>四、 python函数式编程</h3><ol>
+<li>高阶函数(mrfs.py)<ol>
+<li>map(fn, iterable)  reduce(fn, iterable)</li>
+<li>filter(fn, iterable)  Iterator经过filter后会变成Iterable</li>
+<li>sorted(iterable, key=xx, reverse=True)</li>
+</ol>
+</li>
+<li>返回函数</li>
+<li>匿名函数<br> lambda x: x*x</li>
+<li>装饰器(decorator.py)</li>
+<li>偏函数<br> functools.partial(func, **kw)</li>
+</ol>
+<hr>
+<h3 id="五、-错误、调试和测试"><a href="#五、-错误、调试和测试" class="headerlink" title="五、 错误、调试和测试"></a>五、 错误、调试和测试</h3><ol>
+<li>异常处理 try .. except … finally<ul>
+<li>logging.exception(e) #打印异常堆栈</li>
+<li>raise ValueError(“xxxx”) #抛出异常</li>
+<li>except Exception as e: #捕获异常</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">try</span>:</div><div class="line">    b = <span class="number">3</span> / <span class="number">0</span></div><div class="line"><span class="keyword">except</span> Exception, e:</div><div class="line">    <span class="keyword">print</span> Exception, <span class="string">":"</span>, e</div><div class="line"></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"1111"</span></div><div class="line">    fh = open(<span class="string">"testfile"</span>, <span class="string">"r"</span>)</div><div class="line">    <span class="keyword">print</span> <span class="string">"2222"</span></div><div class="line"><span class="keyword">except</span> IOError, e:</div><div class="line">    <span class="keyword">print</span> <span class="string">"3333:"</span>, e</div><div class="line"><span class="keyword">else</span>:</div><div class="line">    <span class="keyword">print</span> <span class="string">"4444"</span></div><div class="line">    fh.close()</div></pre></td></tr></table></figure>
+<ol>
+<li>调试<ul>
+<li>断言 assert<ul>
+<li>assert n != 0, “n is zero”</li>
+<li>启动Python解释器时可以用-O参数来关闭assert</li>
+</ul>
+</li>
+<li>logging<ul>
+<li>import logging</li>
+<li>设置logging的级别,级别低的会覆盖级别高的 logging.basicConfig(level=logging.INFO)<ul>
+<li>debug(4)</li>
+<li>info(3)</li>
+<li>waring(2)</li>
+<li>error(1)    </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="六、-python-IO"><a href="#六、-python-IO" class="headerlink" title="六、 python IO"></a>六、 python IO</h3><ol>
+<li>文件读写<ul>
+<li>f = open(“fileName”, ‘r’)</li>
+<li>with open(‘fileName’, ‘r’) as f: #会自动关闭文件</li>
+</ul>
+</li>
+<li>StringIO 内存中读写str<br> from io import StringIO<br> f = StringIO() 或 StringIO(“hello”)<br> f.write(“xxx”)<br> f.getvalue()<br> s = f.readline()</li>
+<li>BytesIO 内存中读写bytes<br> from io import BytesIO<br> f = BytesIO()<br> f.write(‘中文’.encode(‘utf-8’))</li>
+<li><p>操作文件</p>
+<ul>
+<li>import os</li>
+<li>os.name #操作系统类型</li>
+<li>os.uname() #详细的系统信息，可以调用uname()函数</li>
+<li>os.environ #在操作系统中定义的环境变量</li>
+<li>os.path.abspath(‘.’) # 查看当前目录的绝对路径</li>
+<li>os.path.join(‘/Users/michael’, ‘testdir’) # 在某个目录下创建一个新目录，首先把新目录的完整路径表示出来</li>
+<li>os.path.append(‘’)</li>
+<li>os.mkdir(‘/Users/michael/testdir’)</li>
+<li>os.rmdir(‘/Users/michael/testdir’)</li>
+<li>os.path.split(‘/Users/testdir/file.txt’) #把一个路径拆分为两部分，后一部分总是最后级别的目录或文件名<br>(‘/Users/michael/testdir’, ‘file.txt’)</li>
+<li>os.path.splitext()可以直接让你得到文件扩展名</li>
+<li>os.rename(‘test.txt’, ‘test.py’)</li>
+<li>os.remove(‘test.py’)</li>
+<li><p>shutil模块提供了copyfile()的函数,还可以在shutil模块中找到很多实用函数</p>
+</li>
+<li><p>os.listdir(‘.’)</p>
+</li>
+<li>os.path.isdir(fd_name)</li>
+<li>os.path.isfile(x)</li>
+</ul>
+</li>
+<li><p>序列化</p>
+<ol>
+<li><p>pickle模块</p>
+<ul>
+<li>import pickle</li>
+<li>pickle.dumps(obj)方法把任意对象序列化成一个bytes</li>
+<li>pickle.dump(obj, file)直接把对象序列化后写入一个file-like Object</li>
+<li>pickle.loads(bytes)方法反序列化出对象</li>
+<li>pickle.load(file) 从一个file-like Object中直接反序列化出对象</li>
+</ul>
+</li>
+<li><p>JSON </p>
+<ul>
+<li>import json</li>
+<li>json.dumps(obj)方法把任意对象转化为标准json字符串</li>
+<li>json.dump(obj, file)</li>
+<li>json.loads(json_str)</li>
+<li>json.load(file)</li>
+<li>json.dumps(obj, default=lambda obj:obj.<strong>dict</strong>) 将class对象序列化（含<strong>slots</strong>不可）</li>
+<li>json.loads(json_str, object_hook=dict2student) 将json字符串转为class对象</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="python模块"><a href="#python模块" class="headerlink" title="python模块"></a>python模块</h3><hr>
+<h3 id="七、-python面向对象编程"><a href="#七、-python面向对象编程" class="headerlink" title="七、 python面向对象编程"></a>七、 python面向对象编程</h3><ol>
+<li><strong>slots</strong> = (‘name’, ‘age’) 限制动态地绑定属性，但是对子类无效</li>
+<li><strong>len</strong>(self) 方法我们也知道是为了能让class作用于len()函数</li>
+<li><strong>str</strong>(self) print对象s时，会自动调用str(s)</li>
+<li><strong>repr</strong>(self) 直接打s，会调用repr(s)输出s的地址，用于调试</li>
+<li><strong>iter</strong>(self),<strong>next</strong>(self)<br> 如果一个类想被用于for … in循环，类似list或tuple那样，就必须实现一个<strong>iter</strong>()方法，该方法返回一个迭代对象，然后，Python的for循环就会不断调用该迭代对象的<strong>next</strong>()方法拿到循环的下一个值，直到遇到StopIteration错误时退出循环</li>
+<li><strong>getitem</strong>(self, n) 让对象向数组一样可以通过下标取值；对切片对象slice要单独做判断</li>
+<li><strong>getattr</strong>(self, attr) 只有当调用的属性不存在时，才会调用该方法来尝试获得属性</li>
+<li><strong>call</strong>(self) 对象实例s，调用s()时会自动调用call方法；判断一个对象是否能被调用即有无<strong>call</strong>，callable(Student())</li>
+<li>@property 相当于@attr.getter</li>
+<li>@attr.setter </li>
+<li>枚举类型（enum.py）</li>
+</ol>
+<ul>
+<li><strong>name</strong><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:    <span class="comment"># 当该模块杯其他模块引用时，以下代码不会执行</span></div><div class="line">    module = sys.modules[__name__]    <span class="comment"># 获取系统中的模块，这里是该模块自身，即文件名去掉后缀</span></div><div class="line">    <span class="comment"># 每个模块都有一个隐藏的__name__属性即模块名，在模块自身__name__=__main__，表示当前模块是主模块；当该模块被引用时，__name__为文件名去掉后缀</span></div><div class="line">    func = getattr(module, sys.argv[<span class="number">1</span>])    <span class="comment"># 得到当前模块中名为sys.argv[1]的属性，这里sys.argv[1]=mapper_func，其实是得到mapper_func函数指针（即反射技术）</span></div><div class="line">    <span class="comment"># sys.argv[]是从程序外部获取参数的方法，例如：执行python aaa.py a b c ; sys.argv[0]=aaa.py,sys.argv[1]=a等</span></div><div class="line">    args = <span class="keyword">None</span>     <span class="comment"># 定义参数元组变量名</span></div><div class="line">    <span class="keyword">if</span> len(sys.argv) &gt; <span class="number">1</span>:    <span class="comment"># 当从程序外部获取参数个数大于两个，进入if</span></div><div class="line">        args = sys.argv[<span class="number">2</span>:]    <span class="comment"># 获得第三个及后面的参数</span></div><div class="line">    func(*args)    <span class="comment"># 执行func函数即mapper_func()，*args表示参数为可变参数args</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="导入module"><a href="#导入module" class="headerlink" title="导入module"></a>导入module</h3><pre><code class="python"><span class="keyword">import</span> math
+<span class="keyword">import</span> random
+
+<span class="keyword">print</span> math.pow(<span class="number">2</span>,<span class="number">3</span>)  <span class="comment"># 8</span>
+<span class="keyword">print</span> math.floor(<span class="number">4.9</span>)  <span class="comment"># 4.0</span>
+<span class="keyword">print</span> round(<span class="number">4.9</span>)  <span class="comment"># 5.0</span>
+
+items = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]
+random.shuffle(items)
+sam = random.sample(items, <span class="number">3</span>)  <span class="comment"># 随机抽样 3个</span>
+<span class="keyword">print</span> items  <span class="comment"># 3,2,4,1,5,6    </span>
+<span class="keyword">print</span> sam
+
+a = random.randint(<span class="number">0</span>, <span class="number">3</span>) <span class="comment"># 0-3间的随机数</span>
+</code></pre>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/06/python-学习笔记（一）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-firstPage" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
